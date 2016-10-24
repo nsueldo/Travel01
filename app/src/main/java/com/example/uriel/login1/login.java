@@ -38,7 +38,6 @@ public class login extends AppCompatActivity {
             }
         });
 
-
     }
 
 /**Codigo para pasar de activity
@@ -51,10 +50,9 @@ public class login extends AppCompatActivity {
         String z = "";
         Boolean isSuccess = false;
 
-
-
         String userid = et_user.getText().toString();
         String password = et_password.getText().toString();
+        Intent new_activity = new Intent(getApplicationContext(), travel.class);
 
 
 
@@ -85,8 +83,10 @@ public class login extends AppCompatActivity {
                             locked = rs.getString("locked");
                             if (locked == null){
                                 z = "Login successfull";
+                                startActivity(new_activity);
                             }else{
                                 z = "User locked";
+
                             }
 
                             isSuccess=true;
