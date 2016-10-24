@@ -41,7 +41,7 @@ public class login extends AppCompatActivity {
 
     }
 
-/**
+/**Codigo para pasar de activity
    public void change(View v){
         Intent new_activity = new Intent(this, travel.class);
         startActivity(new_activity);

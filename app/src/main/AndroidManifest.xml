@@ -20,13 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".travel" android:label="Travel!">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".travel"
+            android:label = "Travel"
+            android:screenOrientation="portrait">
         </activity>
+
     </application>
 
 </manifest>
