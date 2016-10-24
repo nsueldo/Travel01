@@ -37,17 +37,26 @@ public class login extends AppCompatActivity {
                 doLogin.execute("");
             }
         });
+
+
     }
 
-
+/**
+   public void change(View v){
+        Intent new_activity = new Intent(this, travel.class);
+        startActivity(new_activity);
+   } */
     public class DoLogin extends AsyncTask<String,String,String>
     {
         String z = "";
         Boolean isSuccess = false;
 
 
+
         String userid = et_user.getText().toString();
         String password = et_password.getText().toString();
+
+
 
         @Override
         protected void onPostExecute(String r) {
