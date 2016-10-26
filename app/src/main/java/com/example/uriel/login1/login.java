@@ -50,6 +50,8 @@ public class login extends AppCompatActivity {
         String z = "";
         Boolean isSuccess = false;
 
+
+
         String userid = et_user.getText().toString();
         String password = et_password.getText().toString();
         Intent new_activity = new Intent(getApplicationContext(), travel.class);
