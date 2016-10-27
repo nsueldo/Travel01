@@ -11,6 +11,7 @@ import android.widget.Toast;
 //MySQL Connection
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 //Date and time
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ public class travel extends AppCompatActivity {
     ConnectionClass connectionClass;
     EditText et_source, et_target;
     Button btn_go;
+
 
     Date datenow = new Date();
     SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd");
@@ -86,7 +88,9 @@ public class travel extends AppCompatActivity {
                         //String query = "SELECT * FROM travels";
                         String query = "INSERT INTO travels (travel_source, travel_target, travel_date, travel_time) VALUES('"+source+"','"+target+"','"+mydate+"', '"+mytime+"');";
                         Statement stmt = con.createStatement(); //genera consulta
-                        ResultSet rs2 = stmt.executeQuery(query);
+                        stmt.executeUpdate(query);
+
+/**                        ResultSet rs2 = stmt.executeQuery(query);
 
                         if (rs2.next()){
                             z = "Success !";
@@ -94,7 +98,7 @@ public class travel extends AppCompatActivity {
                             z=" Error !";
                         }
 
-/**                        if (rs.next()) {
+                        if (rs.next()) {
                             String locked = "";
                             //locked = null;
                             locked = rs.getString("locked");
@@ -113,11 +117,14 @@ public class travel extends AppCompatActivity {
                         }*/
                         con.close();
                     }
-                } catch (Exception ex) {
+                } catch (Exception e) {
                     isSuccess = false;
-                    System.out.print(ex.getMessage());
+                    System.err.println(e.getMessage());
                     z = "Exceptions";
                 }
+            }
+            if ( z == ""){
+                z= "Success !";
             }
             return z;
         }
