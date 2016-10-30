@@ -139,5 +139,28 @@ public class DataBaseStatements {
         return tbl_travels;
     }
 
+    public boolean deleteTravel(String id){
+        try{
+            connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+
+            if (con == null){
+                message = "Error  conection with SQL Server";
+                status = "ERROR";
+                return false;
+            }
+
+            String query = "DELETE FROM travels WHERE travel_id ='"+id+"'";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+
+        } catch (Exception ex ){
+            message = "Error  conection with SQL Server";
+            status = "ERROR";
+        }
+        return true;
+    }
+
 
 }
