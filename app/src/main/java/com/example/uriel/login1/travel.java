@@ -8,43 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-//MySQL Connection
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-//Date and time
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 
 public class travel extends AppCompatActivity {
-
-    ConnectionClass connectionClass;
+    //Declare UI Elements of Travel Screen
     EditText et_source, et_target;
     Button btn_go, btn_exit;
-
-
-    Date datenow = new Date();
-    SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd");
-    String mydate = formatdate.format(datenow);
-
-    Date timenow = new Date();
-    SimpleDateFormat formattime = new SimpleDateFormat("hh:mm:ss");
-    String mytime = formattime.format(timenow);
-
-
-
- //   String a = "2012-12-31";
- //   String b = "101112";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel);
-
-        connectionClass = new ConnectionClass();
+        //Instance UI Elements of Travel Screen
         et_source = (EditText) findViewById(R.id.et_source);
         et_target = (EditText) findViewById(R.id.et_target);
         btn_go = (Button) findViewById(R.id.btn_go);
@@ -61,81 +35,32 @@ public class travel extends AppCompatActivity {
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                System.exit(0);
+                //Call root activity to finish the application
+                Intent intent = new Intent(getApplicationContext(),login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("EXIT", true);
+                startActivity(intent);
             }
         });
-
     }
 
-
     public class DoLogin extends AsyncTask<String, String, String> {
-        String z = "";
-        Boolean isSuccess = false;
-
-
+        //Get information from the screen
         String source = et_source.getText().toString();
         String target = et_target.getText().toString();
-//        Intent new_activity = new Intent(getApplicationContext(), travel.class);
-
 
         @Override
         protected void onPostExecute(String r) {
+            //Show Toast Message
             Toast.makeText(travel.this, r, Toast.LENGTH_SHORT).show();
         }
 
         @Override
         protected String doInBackground(String... params) {
-            if (source.trim().equals("") || target.trim().equals(""))
-                z = "Please enter Source and Target";
-            else {
-                try {
-                    Connection con = connectionClass.CONN();
-                    if (con == null) {
-                        z = "Error in connection with SQL server";
-                    } else {
-                        //String query = "SELECT * FROM travels";
-                        String query = "INSERT INTO travels (travel_source, travel_target, travel_date, travel_time) VALUES('"+source+"','"+target+"','"+mydate+"', '"+mytime+"');";
-                        Statement stmt = con.createStatement(); //genera consulta
-                        stmt.executeUpdate(query);
-
-/**                        ResultSet rs2 = stmt.executeQuery(query);
-
-                        if (rs2.next()){
-                            z = "Success !";
-                        }else{
-                            z=" Error !";
-                        }
-
-                        if (rs.next()) {
-                            String locked = "";
-                            //locked = null;
-                            locked = rs.getString("locked");
-                            if (locked == null) {
-                                z = "Login successfull";
-                                startActivity(new_activity);
-                            } else {
-                                z = "User locked";
-
-                            }
-
-                            isSuccess = true;
-                        } else {
-                            z = "User or Pass wrong";
-                            isSuccess = false;
-                        }*/
-                        con.close();
-                    }
-                } catch (Exception e) {
-                    isSuccess = false;
-                    System.err.println(e.getMessage());
-                    z = "Exceptions";
-                }
-            }
-            if ( z == ""){
-                z= "Success !";
-            }
-            return z;
+            //Insert a new Travel and return message
+            DataBaseStatements db = new DataBaseStatements();
+            db.insertTravel(source, target);
+            return db.message;
         }
     }
 }

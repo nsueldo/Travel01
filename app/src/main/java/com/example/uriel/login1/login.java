@@ -21,6 +21,10 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
+
         //Get UI Elements from Login Activity
         et_user = (EditText)findViewById(R.id.et_user);
         et_password = (EditText)findViewById(R.id.et_password);

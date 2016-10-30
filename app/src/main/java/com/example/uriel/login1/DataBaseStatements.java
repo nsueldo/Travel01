@@ -3,6 +3,8 @@ package com.example.uriel.login1;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class DataBaseStatements {
@@ -58,10 +60,49 @@ public class DataBaseStatements {
                 con.close();
             }
         } catch (Exception ex){
-            message = "Exceptions";
+            message = "Exceptions SQL";
             status = "ERROR";
         }
 
     };
 
+    public void insertTravel( String source,
+                              String target ){
+        if (source.equals("") || target.equals("")){
+            message = "Insert Source and Target";
+            status = "ERROR";
+            return;
+        }
+        Date datenow = new Date();
+        SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd");
+        String mydate = formatdate.format(datenow);
+
+        Date timenow = new Date();
+        SimpleDateFormat formattime = new SimpleDateFormat("HH:mm:ss");
+        String mytime = formattime.format(timenow);
+
+
+
+        try {
+            connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+            if (con == null){
+                message = "Error in connection with SQL Server";
+                status = "ERROR";
+            }else {
+                String query;
+                query = "INSERT INTO travels (travel_source, travel_target, travel_date," +
+                        " travel_time) " + "VALUES('"+source+"','"+target+"'," +
+                        "'"+mydate+"', '"+mytime+"');";
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(query);
+                message = "The travel was sent !";
+                status = "OK";
+            }
+            con.close();
+        }catch (Exception ex){
+            message = "Exception";
+            status = "ERROR";
+        }
+    }
 }
