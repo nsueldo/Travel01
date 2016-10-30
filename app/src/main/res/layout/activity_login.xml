@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/et_password"
+        android:layout_below="@+id/et_user"
         android:hint="Ingrese Contraseña"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

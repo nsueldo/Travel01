@@ -23,7 +23,7 @@ public class travel extends AppCompatActivity {
 
     ConnectionClass connectionClass;
     EditText et_source, et_target;
-    Button btn_go;
+    Button btn_go, btn_exit;
 
 
     Date datenow = new Date();
@@ -48,12 +48,21 @@ public class travel extends AppCompatActivity {
         et_source = (EditText) findViewById(R.id.et_source);
         et_target = (EditText) findViewById(R.id.et_target);
         btn_go = (Button) findViewById(R.id.btn_go);
+        btn_exit = (Button) findViewById(R.id.btn_exit);
 
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 travel.DoLogin doLogin = new travel.DoLogin();
                 doLogin.execute("");
+            }
+        });
+
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
             }
         });
 

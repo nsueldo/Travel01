@@ -1,7 +1,6 @@
 package com.example.uriel.login1;
 
 import android.support.v7.app.AppCompatActivity;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,26 +9,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class login extends AppCompatActivity {
 
-    ConnectionClass connectionClass;
+    //Declaration of UI Elements
     EditText et_user, et_password;
-    Button btn_login;
+    Button   btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        connectionClass = new ConnectionClass();
+        //Get UI Elements from Login Activity
         et_user = (EditText)findViewById(R.id.et_user);
         et_password = (EditText)findViewById(R.id.et_password);
         btn_login = (Button)findViewById(R.id.btn_login);
 
+        //Set OnClick action for BTN_LOGIN
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,27 +34,16 @@ public class login extends AppCompatActivity {
                 doLogin.execute("");
             }
         });
-
     }
 
-/**Codigo para pasar de activity
-   public void change(View v){
-        Intent new_activity = new Intent(this, travel.class);
-        startActivity(new_activity);
-   } */
-    public class DoLogin extends AsyncTask<String,String,String>
-    {
-        String z = "";
-        Boolean isSuccess = false;
+    public class DoLogin extends AsyncTask<String,String,String>{
 
-
-// Hola
-        String userid = et_user.getText().toString();
+        //Declaration of Variables and Intent
+        String userid   = et_user.getText().toString();
         String password = et_password.getText().toString();
-        Intent new_activity = new Intent(getApplicationContext(), travel.class);
+        Intent activity_options = new Intent(getApplicationContext(), options.class);
 
-
-
+        //Show Toast with the Return Message
         @Override
         protected void onPostExecute(String r) {
             Toast.makeText(login.this,r,Toast.LENGTH_SHORT).show();
@@ -65,50 +51,16 @@ public class login extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            if(userid.trim().equals("")|| password.trim().equals(""))
-                z = "Please enter User Id and Password";
-            else
-            {
-                try {
-                    Connection con = connectionClass.CONN();
-                    if (con == null) {
-                        z = "Error in connection with SQL server";
-                    } else {
-
-                        String query = "select * from users where user_id='" + userid + "' and user_pass='" + password + "'";
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
-                        if(rs.next())
-                        {
-                            String locked = "";
-                            locked = null;
-                            locked = rs.getString("locked");
-                            if (locked == null){
-                                z = "Login successfull";
-                                startActivity(new_activity);
-                            }else{
-                                z = "User locked";
-
-                            }
-
-                            isSuccess=true;
-                        }
-                        else
-                        {
-                            z = "User or Pass wrong";
-                            isSuccess = false;
-                        }
-                        con.close();
-                    }
-                }
-                catch (Exception ex)
+            //Check the User and Password from Login Activity
+            DataBaseStatements db = new DataBaseStatements();
+            db.checkUser(userid, password);
+                if (db.status == "OK")
                 {
-                    isSuccess = false;
-                    z = "Exceptions";
+                    //Navigate to Options Activity
+                    startActivity(activity_options);
                 }
-            }
-            return z;
+            //Return Login Message
+            return db.message;
         }
-
     }
 }

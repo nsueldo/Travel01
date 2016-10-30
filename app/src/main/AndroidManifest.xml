@@ -22,7 +22,19 @@
 
         <activity
             android:name=".travel"
-            android:label = "Travel"
+            android:label = "Insert Travel"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".options"
+            android:label = "Options"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".show"
+            android:label = "Show Travels"
             android:screenOrientation="portrait">
         </activity>
 

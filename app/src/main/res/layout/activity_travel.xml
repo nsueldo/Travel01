@@ -3,16 +3,6 @@
     android:layout_width="match_parent" android:layout_height="match_parent" >
 
 
-    <Button
-        android:text="Go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:id="@+id/btn_go"
-        android:onClick=""
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,5 +25,25 @@
         android:layout_below="@+id/et_source"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp" />
+
+    <Button
+        android:text="Go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
+        android:id="@+id/btn_go"
+        android:onClick=""
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/et_target"
+        android:layout_alignStart="@+id/et_target" />
+
+    <Button
+        android:text="Exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_exit"
+        android:layout_alignBaseline="@+id/btn_go"
+        android:layout_alignBottom="@+id/btn_go"
+        android:layout_alignRight="@+id/et_target"/>
 
 </RelativeLayout>
