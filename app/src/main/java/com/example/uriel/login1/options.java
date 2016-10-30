@@ -27,14 +27,12 @@ public class options extends AppCompatActivity {
         btn_insert.setOnClickListener( new View.OnClickListener(){
             public void  onClick (View v){
                 startActivity(activity_travel);
-                finish();
             }
         });
 
         btn_show.setOnClickListener( new View.OnClickListener(){
             public void  onClick (View v){
                 startActivity(activity_show);
-                finish();
             }
         });
     }

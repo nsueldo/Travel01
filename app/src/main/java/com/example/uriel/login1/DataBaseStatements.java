@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.ArrayList;
 
 public class DataBaseStatements {
     //Declaration of Public Variables
@@ -105,4 +105,39 @@ public class DataBaseStatements {
             status = "ERROR";
         }
     }
+
+    public ArrayList getTravels() {
+        ArrayList<String[]> tbl_travels = new ArrayList<String[]>();
+        try {
+            connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+            if (con == null){
+                message = "Error in connection with SQL Server";
+                status = "ERROR";
+                return null;
+            }
+
+            String query;
+            query = "SELECT * FROM travels ORDER BY travel_date DESC LIMIT 5";
+            Statement stmt = con.createStatement();
+            ResultSet data =stmt.executeQuery(query);
+            while (data.next()){
+                String[] linea = {null,null,null,null,null};
+                linea[0] = data.getString("travel_id");
+                linea[1] = data.getString("travel_source");
+                linea[2] = data.getString("travel_target");
+                linea[3] = data.getString("travel_date");
+                linea[4] = data.getString("travel_time");
+                tbl_travels.add(linea);
+            }
+            con.close();
+        } catch (Exception ex){
+            message = "Exception";
+            status = "ERROR";
+        }
+
+        return tbl_travels;
+    }
+
+
 }
