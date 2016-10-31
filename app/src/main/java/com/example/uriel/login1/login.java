@@ -35,11 +35,6 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Progress Bar
-                ProgressDialog progressDialog = new ProgressDialog(login.this,
-                        R.style.AppTheme_Dark_Dialog);
-                progressDialog.setMessage("Authenticating...");
-                progressDialog.show();
                 DoLogin  doLogin = new DoLogin();
                 doLogin.execute("");
             }
@@ -47,11 +42,19 @@ public class login extends AppCompatActivity {
     }
 
     public class DoLogin extends AsyncTask<String,String,String>{
-
-        //Declaration of Variables and Intent
+        //Declaration
+        ProgressDialog progressDialog;
         String userid   = et_user.getText().toString();
         String password = et_password.getText().toString();
         Intent activity_options = new Intent(getApplicationContext(), options.class);
+
+        @Override
+        protected void onPreExecute() {
+            //Start Progress Bar
+            progressDialog = new ProgressDialog(login.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setMessage("Authenticating...");
+            progressDialog.show();
+        }
 
         //Show Toast with the Return Message
         @Override
@@ -61,12 +64,13 @@ public class login extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-
             //Check the User and Password from Login Activity
             DataBaseStatements db = new DataBaseStatements();
             db.checkUser(userid, password);
                 if (db.status == "OK")
                 {
+                    //Dismiss Progress Bar
+                    progressDialog.dismiss();
                     //Navigate to Options Activity
                     startActivity(activity_options);
                 }
