@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.ProgressDialog;
 
 
 public class login extends AppCompatActivity {
@@ -34,6 +35,11 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Progress Bar
+                ProgressDialog progressDialog = new ProgressDialog(login.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setMessage("Authenticating...");
+                progressDialog.show();
                 DoLogin  doLogin = new DoLogin();
                 doLogin.execute("");
             }
@@ -55,6 +61,7 @@ public class login extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+
             //Check the User and Password from Login Activity
             DataBaseStatements db = new DataBaseStatements();
             db.checkUser(userid, password);

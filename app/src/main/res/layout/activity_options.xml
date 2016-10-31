@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-
     <Button
         android:text="Show travels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="129dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
         android:id="@+id/btn_show"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:background="@drawable/round_button"
+        android:drawableTop="@android:drawable/ic_menu_search"/>
 
     <Button
         android:text="Insert travel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/btn_insert"
-        android:layout_alignBaseline="@+id/btn_show"
-        android:layout_alignBottom="@+id/btn_show"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="29dp"
-        android:layout_marginEnd="29dp" />
-
-
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@android:drawable/ic_menu_add"/>
 </RelativeLayout>
