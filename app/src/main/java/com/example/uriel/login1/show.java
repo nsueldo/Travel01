@@ -1,6 +1,5 @@
 package com.example.uriel.login1;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.TableRow;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import java.util.ArrayList;
-import android.support.v4.content.res.ResourcesCompat;
+import android.view.Gravity;
 
 public class show extends AppCompatActivity {
     Button btn_remove;
@@ -43,7 +42,7 @@ public class show extends AppCompatActivity {
             //Create a new object row
             TableRow row= new TableRow(this);
             //Set Layout of the row
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
             row.setLayoutParams(lp);
             //For each line, there are a CheckBox
             CheckBox chb = new CheckBox(this);
@@ -55,6 +54,7 @@ public class show extends AppCompatActivity {
                 TextView tv = new TextView(this);
                 //Get current Cell and add this to the row
                 tv.setText(item[j]);
+                tv.setGravity(Gravity.CENTER_HORIZONTAL);
                 tv.setBackgroundResource(R.drawable.cell_shape);
                 row.addView(tv);
             }
@@ -72,7 +72,6 @@ public class show extends AppCompatActivity {
             if (cbx.isChecked()){
                 TextView tv = (TextView)row.getChildAt(1);
                 String travel_id = tv.getText().toString();
-                tv.setBackgroundColor(Color.GREEN);
                 DataBaseStatements db = new DataBaseStatements();
                 db.deleteTravel(travel_id);
             }

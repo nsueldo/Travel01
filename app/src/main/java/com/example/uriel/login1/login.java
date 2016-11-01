@@ -21,6 +21,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().setTitle("Login");
 
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
@@ -69,11 +70,11 @@ public class login extends AppCompatActivity {
             db.checkUser(userid, password);
                 if (db.status == "OK")
                 {
-                    //Dismiss Progress Bar
-                    progressDialog.dismiss();
                     //Navigate to Options Activity
                     startActivity(activity_options);
                 }
+            //Dismiss Progress Bar
+            progressDialog.dismiss();
             //Return Login Message
             return db.message;
         }
