@@ -15,7 +15,8 @@ public class login extends AppCompatActivity {
 
     //Declaration of UI Elements
     EditText et_user, et_password;
-    Button   btn_login;
+    Button   btn_login,btn_register;
+    Intent activity_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,10 @@ public class login extends AppCompatActivity {
         et_user = (EditText)findViewById(R.id.et_user);
         et_password = (EditText)findViewById(R.id.et_password);
         btn_login = (Button)findViewById(R.id.btn_login);
+        btn_register =(Button) findViewById(R.id.btn_register);
+
+        //Change to Activity Register
+        activity_register = new Intent(getApplicationContext(), register.class);
 
         //Set OnClick action for BTN_LOGIN
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +44,12 @@ public class login extends AppCompatActivity {
                 DoLogin  doLogin = new DoLogin();
                 doLogin.execute("");
             }
+        });
+
+        btn_register.setOnClickListener(new View.OnClickListener(){
+            public  void onClick( View v){
+                startActivity(activity_register);
+        }
         });
     }
 

@@ -25,14 +25,5 @@
         android:background="@drawable/round_button"
         android:drawableTop="@android:drawable/ic_menu_add"/>
 
-    <Button
-        android:text="Register"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/btn_register"
-        android:background="@drawable/round_button"
-        android:drawableTop="@android:drawable/ic_menu_add"
-        android:layout_below="@+id/btn_show"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp" />
+
 </RelativeLayout>

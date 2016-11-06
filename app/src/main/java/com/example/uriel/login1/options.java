@@ -21,11 +21,11 @@ public class options extends AppCompatActivity {
 
         activity_travel = new Intent(getApplicationContext(),travel.class);
         activity_show = new Intent(getApplicationContext(),show.class);
-        activity_register = new Intent(getApplicationContext(), register.class);
+
 
         btn_insert = (Button) findViewById(R.id.btn_insert);
         btn_show = (Button) findViewById(R.id.btn_show);
-        btn_register =(Button) findViewById(R.id.btn_register);
+
 
         btn_insert.setOnClickListener( new View.OnClickListener(){
             public void  onClick (View v){
@@ -38,12 +38,5 @@ public class options extends AppCompatActivity {
                 startActivity(activity_show);
             }
         });
-
-        btn_register.setOnClickListener(new View.OnClickListener(){
-            public  void onClick( View v){
-                startActivity(activity_register);
-            }
-        });
     }
-
 }
