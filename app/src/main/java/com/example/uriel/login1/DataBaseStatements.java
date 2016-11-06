@@ -177,10 +177,11 @@ public class DataBaseStatements {
             String query = "SELECT * FROM companies";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-
+            String[] row = {null,null};
+            String enabled;
             while (rs.next()){
-                String[] row = {null,null};
-                if (rs.getString("enabled") == "1");{
+                enabled = rs.getString("enabled");
+                if (enabled == "1");{
                     row[0] = rs.getString("company_id");
                     row[1] = rs.getString("company_name");
                     tbl_companies.add(row);
