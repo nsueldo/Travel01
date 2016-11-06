@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/imgbackground">
+
+
+
+
+
+    <EditText
+        android:id="@+id/et_ruser"
+        android:hint="Ingrese nombre de usuario"
+        android:inputType="text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/et_rpassword"
+        android:layout_alignStart="@+id/et_rpassword" />
+
+    <Button
+        android:text="Go!"
+        android:id="@+id/btn_rgo"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@android:drawable/ic_menu_send"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp" />
+
+    <EditText
+        android:id="@+id/et_rpassword"
+        android:hint="Ingrese contraseña"
+        android:inputType="textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="74dp"
+        android:layout_marginEnd="74dp"
+        android:layout_below="@+id/et_ruser"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:id="@+id/s_companies"
+        android:hint="Ingrese nombre de compañia"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/et_rpassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Elija compañia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_below="@+id/et_rpassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="sans-serif"/>
+
+</RelativeLayout>

@@ -156,10 +156,44 @@ public class DataBaseStatements {
             con.close();
 
         } catch (Exception ex ){
-            message = "Error  conection with SQL Server";
+            message = "Error  connection with SQL Server";
             status = "ERROR";
         }
         return true;
+    }
+
+    public  ArrayList getCompanies(){
+        ArrayList<String[]> tbl_companies = new ArrayList<String[]>();
+        try {
+            ConnectionClass connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+
+            if (con == null){
+                status = "ERROR";
+                message ="Error connection with SQL Server";
+                return null;
+            }
+
+            String query = "SELECT * FROM companies";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()){
+                String[] row = {null,null};
+                if (rs.getString("enabled") == "1");{
+                    row[0] = rs.getString("company_id");
+                    row[1] = rs.getString("company_name");
+                    tbl_companies.add(row);
+                }
+
+            }
+
+        }catch (Exception ex){
+            message = "Error  connection with SQL Server: "+ex;
+            status = "ERROR";
+        }
+        return tbl_companies;
+
     }
 
 

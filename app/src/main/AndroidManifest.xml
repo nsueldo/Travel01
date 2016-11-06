@@ -36,5 +36,11 @@
             android:label = "Show Travels"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".register"
+            android:label="Register"
+            android:screenOrientation="sensor"
+            />
     </application>
 </manifest>
