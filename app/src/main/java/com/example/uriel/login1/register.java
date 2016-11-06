@@ -4,41 +4,56 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import android.util.Log;
 
 public class register extends AppCompatActivity {
     List<String> companies_list;
     ArrayList<String[]> tbl_companies;
-    DataBaseStatements db;
-    Spinner s_companies;
-    ArrayAdapter<String> dataAdapter;
-    int i;
-    String[] row;
-    String item;
+    String company_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        //Set Company Spinner values from DataBase
         setCompanySpinner();
     }
 
-    public void setCompanySpinner(){
+    protected void setCompanySpinner(){
+        DataBaseStatements db;
+        Spinner s_companies;
+        ArrayAdapter<String> dataAdapter;
+        String[] row;
         s_companies = (Spinner) findViewById(R.id.s_companies);
         db = new DataBaseStatements();
         tbl_companies = db.getCompanies();
         companies_list = new ArrayList<String>();
 
-        for (i = 0; i < tbl_companies.size(); i++){
+        for (int i = 0; i < tbl_companies.size(); i++){
             row = tbl_companies.get(i);
-            item = row[1];
-            companies_list.add(item);
+            companies_list.add(row[1]);
         }
-
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, companies_list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_companies.setAdapter(dataAdapter);
+        s_companies.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    }
+
+    public class CustomOnItemSelectedListener implements OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+            String[] row = tbl_companies.get(pos);
+            company_id   = row[0];
+            Log.w("URIEL",company_id);
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+        }
     }
 }

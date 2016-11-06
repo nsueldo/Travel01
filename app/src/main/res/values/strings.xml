@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Travels</string>
+    <string name="company_choose">Ingrese una Empresa</string>
 </resources>

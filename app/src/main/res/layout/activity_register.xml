@@ -46,13 +46,14 @@
     <Spinner
         android:id="@+id/s_companies"
         android:hint="Ingrese nombre de compañia"
-        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="53dp"
         android:layout_below="@+id/et_rpassword"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:prompt="@string/company_choose"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:text="Elija compañia"

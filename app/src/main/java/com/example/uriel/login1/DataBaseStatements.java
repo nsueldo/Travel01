@@ -177,25 +177,18 @@ public class DataBaseStatements {
             String query = "SELECT * FROM companies";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            String[] row = {null,null};
-            String enabled;
             while (rs.next()){
-                enabled = rs.getString("enabled");
-                if (enabled == "1");{
+                String[] row = {null,null};
+                if (rs.getBoolean("enabled") == true){
                     row[0] = rs.getString("company_id");
                     row[1] = rs.getString("company_name");
                     tbl_companies.add(row);
                 }
-
             }
-
         }catch (Exception ex){
             message = "Error  connection with SQL Server: "+ex;
             status = "ERROR";
         }
         return tbl_companies;
-
     }
-
-
 }
