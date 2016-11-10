@@ -22,7 +22,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle("Entrar al Sistema");
 
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();

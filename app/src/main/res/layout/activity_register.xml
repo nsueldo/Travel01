@@ -1,86 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/imgbackground"
+    android:background="@color/blue"
     android:orientation="vertical">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:text="Usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_ruser"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryDark" />
+        android:layout_height="wrap_content"
+        android:padding="15dip">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="20dip"
-            android:inputType="text"
             android:id="@+id/et_ruser"
-            android:drawableLeft="@drawable/ic_user"
-            android:drawablePadding="20dp"
-            android:background="@drawable/edit_text"
-            android:hint="Ingrese Usuario" />
-
-        <TextView
-            android:text="Contraseña"
+            android:hint="Usuario"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_rpassword"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryDark"/>
+            style="@style/EditText" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="5dip"
             android:id="@+id/et_rpassword"
-            android:hint="Ingrese Contraseña"
+            android:hint="Contraseña"
             android:inputType="textPassword"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="20dp"
-            android:background="@drawable/edit_text"/>
-
-        <TextView
-            android:text="Elija compañia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryDark"/>
+            style="@style/EditText"/>
 
         <Spinner
             android:id="@+id/s_companies"
-            android:hint="Ingrese nombre de compañia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_rpassword"
+            android:hint="Compañia"
             android:prompt="@string/company_choose"
             android:spinnerMode="dialog"
-            android:background="@drawable/edit_text"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditText"
+            android:padding="28dp" />
 
         <Button
-            android:text="Go!"
             android:id="@+id/btn_rgo"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:background="@drawable/round_button"
-            android:drawableTop="@android:drawable/ic_menu_send"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="61dp" />
-
+            android:text="Registrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
     </LinearLayout>
-
 </ScrollView>

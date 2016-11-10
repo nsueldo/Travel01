@@ -46,6 +46,8 @@ public class show extends AppCompatActivity {
             row.setLayoutParams(lp);
             //For each line, there are a CheckBox
             CheckBox chb = new CheckBox(this);
+            chb.setGravity(Gravity.CENTER_HORIZONTAL);
+            chb.setBackgroundResource(R.drawable.cell_shape);
             row.addView(chb);
             String[] item = tbl_travel_2.get(i);
             //Loop each cell of the current line

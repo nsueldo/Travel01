@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dip">
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Ingrese su ubicacion"
-        android:ems="10"
         android:id="@+id/et_source"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/et_target"
-        android:layout_alignStart="@+id/et_target"
-        android:layout_marginTop="56dp" />
+        android:hint="Ubicación"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dip"
+        style="@style/EditText"/>
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Ingrese su destino"
-        android:ems="10"
         android:id="@+id/et_target"
-        android:layout_below="@+id/et_source"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp" />
+        android:hint="Destino"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dip"
+        style="@style/EditText"/>
 
     <Button
-        android:text="Go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
         android:id="@+id/btn_go"
-        android:onClick=""
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/et_target"
-        android:layout_alignStart="@+id/et_target" />
+        android:text="Ingresar Viaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
 
     <Button
-        android:text="Exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btn_exit"
-        android:layout_alignBaseline="@+id/btn_go"
-        android:layout_alignBottom="@+id/btn_go"
-        android:layout_alignRight="@+id/et_target"/>
-
+        android:text="Salir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="5dp"
+        android:padding="10dp" />
+    </LinearLayout>
 </RelativeLayout>

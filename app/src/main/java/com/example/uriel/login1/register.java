@@ -76,7 +76,7 @@ public class register extends AppCompatActivity {
         @Override
         protected void onPostExecute(String r) {
             //Dismiss Progress Bar
-            dataAdapter = new ArrayAdapter<String>(register.this, android.R.layout.simple_spinner_item, companies_list);
+            dataAdapter = new ArrayAdapter<String>(register.this, R.layout.spinner, companies_list);
             s_companies.setAdapter(dataAdapter);
             s_companies.setOnItemSelectedListener(new CustomOnItemSelectedListener());
             progressDialog.dismiss();

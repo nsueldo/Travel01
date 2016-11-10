@@ -21,19 +21,19 @@
 
         <activity
             android:name=".travel"
-            android:label = "Insert Travel"
+            android:label = "Ingresar Nuevo Viaje"
             android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".options"
-            android:label = "Options"
+            android:label = "Opciones"
             android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".show"
-            android:label = "Show Travels"
+            android:label = "Lista de Viajes"
             android:screenOrientation="portrait">
         </activity>
 
