@@ -1,5 +1,7 @@
 package com.example.uriel.login1;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,22 +15,32 @@ import android.view.Gravity;
 
 public class show extends AppCompatActivity {
     Button btn_remove;
+    ArrayList<String[]> tbl_travel_2;
+    TableLayout tbl_travels;
+    DataBaseStatements db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
+
+
+
         btn_remove = (Button) findViewById(R.id.btn_remove);
         btn_remove.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 deleteSelectedRows();
             }
         });
+        PrepareTableTravels prepareTravels = new PrepareTableTravels();
+        prepareTravels.execute();
+        //fillTable();
 
-        fillTable();
+
     }
 
-    public void fillTable(){
+    public void showTable(){
+   /*
         //Declaration of a List
         ArrayList<String[]> tbl_travel_2 = new ArrayList<String[]>();
         //Get Table from Screen
@@ -37,6 +49,8 @@ public class show extends AppCompatActivity {
         //Get Travels from Database into the List
         DataBaseStatements db = new DataBaseStatements();
         tbl_travel_2 = db.getTravels();
+  */
+        tbl_travels.removeAllViews();
         //Loop each line (row) of the List
         for (int i = 0; i < tbl_travel_2.size(); i++){
             //Create a new object row
@@ -66,7 +80,7 @@ public class show extends AppCompatActivity {
     }
 
     public void deleteSelectedRows(){
-        TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
+        //TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
         int qty_rows = tbl_travels.getChildCount();
         for (int i = 0; i < qty_rows; i++){
             TableRow row = (TableRow)tbl_travels.getChildAt(i);
@@ -74,11 +88,38 @@ public class show extends AppCompatActivity {
             if (cbx.isChecked()){
                 TextView tv = (TextView)row.getChildAt(1);
                 String travel_id = tv.getText().toString();
-                DataBaseStatements db = new DataBaseStatements();
+                //DataBaseStatements db = new DataBaseStatements();
                 db.deleteTravel(travel_id);
             }
         }
 
-        this.fillTable();
+        this.showTable();
+    }
+
+    public class PrepareTableTravels extends AsyncTask<String, String, String>{
+        ProgressDialog progressDialog;
+        @Override
+        protected  void onPreExecute(){
+            progressDialog = new ProgressDialog(show.this,R.style.AppTheme_Dark_Dialog );
+            progressDialog.setMessage("Loading Travels");
+            progressDialog.show();
+        }
+
+
+        @Override
+        protected void onPostExecute(String r){
+            showTable();
+            progressDialog.dismiss();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            tbl_travel_2 = new ArrayList<String[]>();
+            tbl_travels = (TableLayout) findViewById(R.id.travelTable);
+            db = new DataBaseStatements();
+            tbl_travel_2 = db.getTravels();
+            return "";
+        }
     }
 }

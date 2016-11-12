@@ -14,6 +14,32 @@
         android:padding="15dip">
 
         <EditText
+            android:id="@+id/et_rname"
+            android:hint="Nombre"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditText" />
+
+        <EditText
+            android:id="@+id/et_rsurname"
+            android:hint="Apellido"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditText" />
+
+
+        <EditText
+            android:id="@+id/et_remail"
+            android:hint="Email"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditText" />
+
+
+        <EditText
             android:id="@+id/et_ruser"
             android:hint="Usuario"
             android:inputType="text"
