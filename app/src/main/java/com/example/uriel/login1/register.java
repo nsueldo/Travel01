@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,13 +23,22 @@ public class register extends AppCompatActivity {
     Spinner s_companies;
     ArrayAdapter<String> dataAdapter;
 
+    EditText et_rname, et_rsurname, et_remail, et_ruser, et_rpass;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         //Set Company Spinner values from DataBase
         PrepareRegister prepareRegister = new PrepareRegister();
         prepareRegister.execute("");
+    }
+
+    protected void registerUser(){
+        DataBaseStatements db = new DataBaseStatements();
+        //db.insertUser();
     }
 
     protected void setCompanySpinner(){

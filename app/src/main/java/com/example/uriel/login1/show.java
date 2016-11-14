@@ -12,45 +12,49 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import java.util.ArrayList;
 import android.view.Gravity;
+import android.widget.Toast;
 
 public class show extends AppCompatActivity {
     Button btn_remove;
     ArrayList<String[]> tbl_travel_2;
-    TableLayout tbl_travels;
-    DataBaseStatements db;
+    travels Travels;
+    boolean delete;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
-
-
-
+        //progressDialog = new ProgressDialog(show.this,R.style.AppTheme_Dark_Dialog);
+        delete = false;
         btn_remove = (Button) findViewById(R.id.btn_remove);
         btn_remove.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                deleteSelectedRows();
+                //progressDialog.setMessage("Deleting Travels...");
+                delete = true;
+                Travels = new travels();
+                Travels.execute("");
+
+                //deleteSelectedRows();
+                //progressDialog.dismiss();
             }
         });
-        PrepareTableTravels prepareTravels = new PrepareTableTravels();
-        prepareTravels.execute();
+        Travels = new travels();
+        Travels.execute("");
         //fillTable();
-
-
     }
 
-    public void showTable(){
-   /*
+    public void fillTable(){
+
         //Declaration of a List
-        ArrayList<String[]> tbl_travel_2 = new ArrayList<String[]>();
+        //tbl_travel_2 = new ArrayList<String[]>();
         //Get Table from Screen
         TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
         tbl_travels.removeAllViews();
         //Get Travels from Database into the List
-        DataBaseStatements db = new DataBaseStatements();
-        tbl_travel_2 = db.getTravels();
-  */
-        tbl_travels.removeAllViews();
+        //DataBaseStatements db = new DataBaseStatements();
+        //tbl_travel_2 = db.getTravels();
         //Loop each line (row) of the List
         for (int i = 0; i < tbl_travel_2.size(); i++){
             //Create a new object row
@@ -80,7 +84,8 @@ public class show extends AppCompatActivity {
     }
 
     public void deleteSelectedRows(){
-        //TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
+        DataBaseStatements db = new DataBaseStatements();
+        TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
         int qty_rows = tbl_travels.getChildCount();
         for (int i = 0; i < qty_rows; i++){
             TableRow row = (TableRow)tbl_travels.getChildAt(i);
@@ -92,34 +97,44 @@ public class show extends AppCompatActivity {
                 db.deleteTravel(travel_id);
             }
         }
-
-        this.showTable();
     }
 
-    public class PrepareTableTravels extends AsyncTask<String, String, String>{
+    public class travels extends AsyncTask<String,String,String>{
         ProgressDialog progressDialog;
+        String message = "";
         @Override
-        protected  void onPreExecute(){
-            progressDialog = new ProgressDialog(show.this,R.style.AppTheme_Dark_Dialog );
-            progressDialog.setMessage("Loading Travels");
+        protected void onPreExecute (){
+            progressDialog = new ProgressDialog(show.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setMessage("Loading Travels...");
             progressDialog.show();
+
         }
-
-
         @Override
-        protected void onPostExecute(String r){
-            showTable();
+        protected void onPostExecute(String r) {
+            /*
+            if (delete){
+                deleteSelectedRows();
+                delete = false;
+            }*/
+            fillTable();
             progressDialog.dismiss();
+            //Show Toast Message
+            Toast.makeText(show.this, r, Toast.LENGTH_SHORT).show();
         }
 
         @Override
         protected String doInBackground(String... params) {
+            if (delete){
+                deleteSelectedRows();
+            }
 
+            DataBaseStatements db = new DataBaseStatements();
             tbl_travel_2 = new ArrayList<String[]>();
-            tbl_travels = (TableLayout) findViewById(R.id.travelTable);
-            db = new DataBaseStatements();
             tbl_travel_2 = db.getTravels();
-            return "";
+            message =  db.message;
+
+            return message;
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.uriel.login1;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,12 +46,21 @@ public class travel extends AppCompatActivity {
     }
 
     public class DoLogin extends AsyncTask<String, String, String> {
+        //Set Progress Dialog
+        ProgressDialog progressDialog;
         //Get information from the screen
         String source = et_source.getText().toString();
         String target = et_target.getText().toString();
 
         @Override
+        protected void onPreExecute (){
+            progressDialog = new ProgressDialog(travel.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setMessage("Loading Travel...");
+            progressDialog.show();
+        }
+        @Override
         protected void onPostExecute(String r) {
+            progressDialog.dismiss();
             //Show Toast Message
             Toast.makeText(travel.this, r, Toast.LENGTH_SHORT).show();
         }

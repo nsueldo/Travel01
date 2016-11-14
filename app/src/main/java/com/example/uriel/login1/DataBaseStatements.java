@@ -130,6 +130,8 @@ public class DataBaseStatements {
                 linea[4] = data.getString("travel_time");
                 tbl_travels.add(linea);
             }
+            message = "Travels loaded !";
+            status = "OK";
             con.close();
         } catch (Exception ex){
             message = "Exception";
@@ -190,5 +192,15 @@ public class DataBaseStatements {
             status = "ERROR";
         }
         return tbl_companies;
+    }
+
+    public void insertUser(String name, String surname,
+                           String email,String username, String pass, String companie){
+
+        if (name.equals("") || username.equals("")){
+            message = "Complete todos los campos !";
+            status = "ERROR";
+        }
+
     }
 }
