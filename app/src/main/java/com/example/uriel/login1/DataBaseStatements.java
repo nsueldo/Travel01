@@ -195,11 +195,51 @@ public class DataBaseStatements {
     }
 
     public void insertUser(String name, String surname,
-                           String email,String username, String pass, String companie){
+                           String email,String username, String pass, String company){
 
-        if (name.equals("") || username.equals("")){
+        if (name.equals("") || username.equals("") ||
+                email.equals("") || username.equals("") ||
+                        pass.equals("") || company.equals("")){
             message = "Complete todos los campos !";
             status = "ERROR";
+        }else{
+
+            try{
+                ConnectionClass connectionClass = new ConnectionClass();
+                Connection con = connectionClass.CONN();
+
+                if (con == null){
+                    message = "Error Connection with SQL Server";
+                    status = "ERROR";
+                }
+
+                String query = "SELECT * FROM users";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                rs.first();
+                String user_db = rs.getString("user_id");
+                while (user_db != username && rs.next()){
+                    user_db = rs.getString("user_id");
+                }
+
+                if (user_db != username){
+                    query = "INSERT INTO users (user_id, user_pass, user_name," +
+                            " user_surname, user_email, locked, id_company) " + "VALUES('"+username+"','"+pass+"'," +
+                            "'"+name+"', '"+surname+"', '"+email+"', NULL, '"+company+"');";
+                    stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+                    message = "User register";
+                    status = "OK";
+                }else {
+                    message = "User have been registered";
+                    status = "ERROR";
+                }
+
+
+            }catch (Exception ex){
+                message = "Error  connection with SQL Server: "+ex;
+                status = "ERROR";
+            }
         }
 
     }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
 import android.app.ProgressDialog;
+import android.widget.Toast;
 
 public class register extends AppCompatActivity {
     List<String> companies_list;
@@ -24,6 +25,7 @@ public class register extends AppCompatActivity {
     ArrayAdapter<String> dataAdapter;
 
     EditText et_rname, et_rsurname, et_remail, et_ruser, et_rpass;
+    String name, surname, email, user, pass;
 
 
     @Override
@@ -36,9 +38,23 @@ public class register extends AppCompatActivity {
         prepareRegister.execute("");
     }
 
-    protected void registerUser(){
+    public void registerUser(View view){
+        et_rname = (EditText) findViewById(R.id.et_rname);
+        et_rsurname = (EditText) findViewById(R.id.et_rsurname);
+        et_remail = (EditText) findViewById(R.id.et_remail);
+        et_ruser = (EditText) findViewById(R.id.et_ruser);
+        et_rpass = (EditText) findViewById(R.id.et_rpassword);
+
+        name = et_rname.getText().toString();
+        surname = et_rsurname.getText().toString();
+        email = et_remail.getText().toString();
+        user = et_ruser.getText().toString();
+        pass = et_rpass.getText().toString();
+
         DataBaseStatements db = new DataBaseStatements();
-        //db.insertUser();
+        db.insertUser(name, surname, email, user, pass, company_id);
+
+        Toast.makeText(register.this, db.message, Toast.LENGTH_SHORT).show();
     }
 
     protected void setCompanySpinner(){
