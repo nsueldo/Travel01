@@ -213,16 +213,17 @@ public class DataBaseStatements {
                     status = "ERROR";
                 }
 
-                String query = "SELECT * FROM users";
+                String query = "SELECT * FROM users WHERE user_id ='"+username+"';";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-                rs.first();
+/*              rs.first();
                 String user_db = rs.getString("user_id");
                 while (user_db != username && rs.next()){
                     user_db = rs.getString("user_id");
                 }
+*/
 
-                if (user_db != username){
+                if (!rs.first()){
                     query = "INSERT INTO users (user_id, user_pass, user_name," +
                             " user_surname, user_email, locked, id_company) " + "VALUES('"+username+"','"+pass+"'," +
                             "'"+name+"', '"+surname+"', '"+email+"', NULL, '"+company+"');";

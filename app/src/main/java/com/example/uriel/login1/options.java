@@ -36,6 +36,7 @@ public class options extends AppCompatActivity {
         btn_show.setOnClickListener( new View.OnClickListener(){
             public void  onClick (View v){
                 startActivity(activity_show);
+                
             }
         });
     }

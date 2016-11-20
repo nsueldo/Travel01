@@ -26,6 +26,7 @@ public class register extends AppCompatActivity {
 
     EditText et_rname, et_rsurname, et_remail, et_ruser, et_rpass;
     String name, surname, email, user, pass;
+    Button btn_rgo;
 
 
     @Override
@@ -36,25 +37,18 @@ public class register extends AppCompatActivity {
         //Set Company Spinner values from DataBase
         PrepareRegister prepareRegister = new PrepareRegister();
         prepareRegister.execute("");
-    }
 
-    public void registerUser(View view){
         et_rname = (EditText) findViewById(R.id.et_rname);
         et_rsurname = (EditText) findViewById(R.id.et_rsurname);
         et_remail = (EditText) findViewById(R.id.et_remail);
         et_ruser = (EditText) findViewById(R.id.et_ruser);
         et_rpass = (EditText) findViewById(R.id.et_rpassword);
+    }
 
-        name = et_rname.getText().toString();
-        surname = et_rsurname.getText().toString();
-        email = et_remail.getText().toString();
-        user = et_ruser.getText().toString();
-        pass = et_rpass.getText().toString();
+    public void registerUser(View view){
+        Register reg = new Register();
+        reg.execute("");
 
-        DataBaseStatements db = new DataBaseStatements();
-        db.insertUser(name, surname, email, user, pass, company_id);
-
-        Toast.makeText(register.this, db.message, Toast.LENGTH_SHORT).show();
     }
 
     protected void setCompanySpinner(){
@@ -88,16 +82,6 @@ public class register extends AppCompatActivity {
     }
 
     public class PrepareRegister extends AsyncTask<String,String,String> {
-        //Declaration
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            //Start Progress Bar
-            progressDialog = new ProgressDialog(register.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Preparing...");
-            progressDialog.show();
-        }
 
         //Show Toast with the Return Message
         @Override
@@ -106,13 +90,48 @@ public class register extends AppCompatActivity {
             dataAdapter = new ArrayAdapter<String>(register.this, R.layout.spinner, companies_list);
             s_companies.setAdapter(dataAdapter);
             s_companies.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-            progressDialog.dismiss();
         }
 
         @Override
         protected String doInBackground(String... params) {
             setCompanySpinner();
             return "";
+        }
+    }
+
+    public class Register extends AsyncTask<String,String,String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute(){
+            progressDialog = new ProgressDialog(register.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setMessage("Register User...");
+            progressDialog.show();
+
+            name = et_rname.getText().toString();
+            surname = et_rsurname.getText().toString();
+            email = et_remail.getText().toString();
+            user = et_ruser.getText().toString();
+            pass = et_rpass.getText().toString();
+        }
+        @Override
+        protected void onPostExecute(String r) {
+
+            //Dismiss Progress Bar
+            progressDialog.dismiss();
+            Toast.makeText(register.this, r, Toast.LENGTH_SHORT).show();
+
+            if ( r == "User register"){
+                finish();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            DataBaseStatements db = new DataBaseStatements();
+            db.insertUser(name, surname, email, user, pass, company_id);
+            return db.message;
         }
     }
 }
