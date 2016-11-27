@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 
-import java.util.ArrayList;
-
 
 public class login extends AppCompatActivity {
 
@@ -66,7 +64,7 @@ public class login extends AppCompatActivity {
         protected void onPreExecute() {
             //Start Progress Bar
             progressDialog = new ProgressDialog(login.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Authenticating...");
+            progressDialog.setMessage("Validando ingreso...");
             progressDialog.show();
         }
 

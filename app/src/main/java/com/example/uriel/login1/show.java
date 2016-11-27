@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import android.view.Gravity;
 import android.widget.Toast;
 
+
 public class show extends AppCompatActivity {
+    //Class Declarations
     Button btn_remove;
     ArrayList<String[]> tbl_travel_2;
     travels Travels;
     deleteTravels delete;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,29 +31,26 @@ public class show extends AppCompatActivity {
             public void onClick(View v){
                 delete = new deleteTravels();
                 delete.execute("");
-                Travels = new travels();
-                Travels.execute("");
             }
         });
         tbl_travel_2 = (ArrayList<String[]>) getIntent().getSerializableExtra("tbl_travel_option");
         fillTable(tbl_travel_2);
- //       Travels = new travels();
- //       Travels.execute("");
+
     }
 
     public void fillTable(ArrayList<String[]> tbl_travel_2){
 
-        //Declaration of a List
-        //tbl_travel_2 = new ArrayList<String[]>();
-
         //Get Table from Screen
         TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
-        tbl_travels.removeAllViews();
-        //Get Travels from Database into the List
-        //DataBaseStatements db = new DataBaseStatements();
-        //tbl_travel_2 = db.getTravels();
+        //Check if there are more than one row in the table
+        //and delete all rows except the header
+        while (tbl_travels.getChildCount() > 1) {
+            TableRow row =  (TableRow)tbl_travels.getChildAt(1);
+            tbl_travels.removeView(row);
+        }
+
         //Loop each line (row) of the List
-        for (int i = 0; i < tbl_travel_2.size(); i++){
+        for (int i = 1; i < tbl_travel_2.size(); i++){
             //Create a new object row
             TableRow row= new TableRow(this);
             //Set Layout of the row
@@ -64,7 +61,7 @@ public class show extends AppCompatActivity {
             chb.setGravity(Gravity.CENTER_HORIZONTAL);
             chb.setBackgroundResource(R.drawable.cell_shape);
             row.addView(chb);
-            String[] item = tbl_travel_2.get(i);
+            String[] item = tbl_travel_2.get(i-1);
             //Loop each cell of the current line
             for (int j = 0; j < tbl_travel_2.get(i).length; j++){
                 //Each Cell is a Text View
@@ -84,13 +81,12 @@ public class show extends AppCompatActivity {
         DataBaseStatements db = new DataBaseStatements();
         TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
         int qty_rows = tbl_travels.getChildCount();
-        for (int i = 0; i < qty_rows; i++){
+        for (int i = 1; i < qty_rows; i++){
             TableRow row = (TableRow)tbl_travels.getChildAt(i);
             CheckBox cbx = (CheckBox)row.getChildAt(0);
             if (cbx.isChecked()){
                 TextView tv = (TextView)row.getChildAt(1);
                 String travel_id = tv.getText().toString();
-                //DataBaseStatements db = new DataBaseStatements();
                 db.deleteTravel(travel_id);
             }
         }
@@ -102,7 +98,7 @@ public class show extends AppCompatActivity {
         @Override
         protected void onPreExecute (){
             progressDialog = new ProgressDialog(show.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Loading Travels...");
+            progressDialog.setMessage("Cargando viajes...");
             progressDialog.show();
 
         }
@@ -127,20 +123,21 @@ public class show extends AppCompatActivity {
     }
 
     public class deleteTravels extends AsyncTask<String,String,String>{
+        //Create progress dialog
         ProgressDialog progressDialog;
-        String message = "";
-        TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
 
         @Override
         protected void onPreExecute (){
             //Show Popup of Deletetion
             progressDialog = new ProgressDialog(show.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Borrando Viajes...");
+            progressDialog.setMessage("Borrando viajes...");
             progressDialog.show();
         }
         @Override
         protected void onPostExecute(String r) {
             progressDialog.dismiss();
+            Travels = new travels();
+            Travels.execute("");
         }
 
         @Override

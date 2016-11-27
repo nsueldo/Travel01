@@ -63,7 +63,7 @@ public class options extends AppCompatActivity {
         @Override
         protected void onPreExecute (){
             progressDialog = new ProgressDialog(options.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Loading Travels...");
+            progressDialog.setMessage("Cargando viajes...");
             progressDialog.show();
 
         }

@@ -25,8 +25,7 @@ public class register extends AppCompatActivity {
     ArrayAdapter<String> dataAdapter;
 
     EditText et_rname, et_rsurname, et_remail, et_ruser, et_rpass;
-    String name, surname, email, user, pass;
-    Button btn_rgo;
+    String name, surname, email, user, pass, status;
 
 
     @Override
@@ -121,7 +120,7 @@ public class register extends AppCompatActivity {
             progressDialog.dismiss();
             Toast.makeText(register.this, r, Toast.LENGTH_SHORT).show();
 
-            if ( r == "User register"){
+            if ( status == "OK"){
                 finish();
             }
         }
@@ -131,6 +130,7 @@ public class register extends AppCompatActivity {
 
             DataBaseStatements db = new DataBaseStatements();
             db.insertUser(name, surname, email, user, pass, company_id);
+            status = db.status;
             return db.message;
         }
     }

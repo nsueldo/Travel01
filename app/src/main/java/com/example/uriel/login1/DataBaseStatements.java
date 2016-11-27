@@ -19,7 +19,7 @@ public class DataBaseStatements {
         //Check if the user and password are initial
         if (name.equals("") || password.equals(""))
         {
-            message = "Insert User and Password";
+            message = "Ingresar Usuario y Contraseña";
             status  = "ERROR";
             return;
         }
@@ -44,7 +44,7 @@ public class DataBaseStatements {
                     locked = null;
                     locked = rs.getString("locked");
                     if (locked == null){
-                        message = "Login successfull";
+                        message = "Logueo Exitoso";
                         status = "OK";
 
                     }else{
@@ -54,7 +54,7 @@ public class DataBaseStatements {
                 }
                 else
                 {
-                    message = "User or Pass wrong";
+                    message = "Usuario o Contraseña Incorrecta";
                     status = "ERROR";
                 }
                 con.close();
@@ -69,7 +69,7 @@ public class DataBaseStatements {
     public void insertTravel( String source,
                               String target ){
         if (source.equals("") || target.equals("")){
-            message = "Insert Source and Target";
+            message = "Ingresar Origen y Destino";
             status = "ERROR";
             return;
         }
@@ -96,7 +96,7 @@ public class DataBaseStatements {
                         "'"+mydate+"', '"+mytime+"');";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(query);
-                message = "The travel was sent !";
+                message = "Nuevo Viaje Creado";
                 status = "OK";
             }
             con.close();
@@ -130,9 +130,9 @@ public class DataBaseStatements {
                 linea[4] = data.getString("travel_time");
                 tbl_travels.add(linea);
             }
-            message = "Travels loaded !";
-            status = "OK";
             con.close();
+            message = "Viajes Cargados";
+            status = "OK";
         } catch (Exception ex){
             message = "Exception";
             status = "ERROR";
@@ -186,6 +186,7 @@ public class DataBaseStatements {
                     row[1] = rs.getString("company_name");
                     tbl_companies.add(row);
                 }
+                con.close();
             }
         }catch (Exception ex){
             message = "Error  connection with SQL Server: "+ex;
@@ -200,7 +201,7 @@ public class DataBaseStatements {
         if (name.equals("") || username.equals("") ||
                 email.equals("") || username.equals("") ||
                         pass.equals("") || company.equals("")){
-            message = "Complete todos los campos !";
+            message = "Completar todos los campos";
             status = "ERROR";
         }else{
 
@@ -216,12 +217,6 @@ public class DataBaseStatements {
                 String query = "SELECT * FROM users WHERE user_id ='"+username+"';";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-/*              rs.first();
-                String user_db = rs.getString("user_id");
-                while (user_db != username && rs.next()){
-                    user_db = rs.getString("user_id");
-                }
-*/
 
                 if (!rs.first()){
                     query = "INSERT INTO users (user_id, user_pass, user_name," +
@@ -229,10 +224,11 @@ public class DataBaseStatements {
                             "'"+name+"', '"+surname+"', '"+email+"', NULL, '"+company+"');";
                     stmt = con.createStatement();
                     stmt.executeUpdate(query);
-                    message = "User register";
+                    message = "Usuario Registrado";
                     status = "OK";
+                    con.close();
                 }else {
-                    message = "User have been registered";
+                    message = "Usuario Registrado";
                     status = "ERROR";
                 }
 
@@ -241,7 +237,7 @@ public class DataBaseStatements {
                 message = "Error  connection with SQL Server: "+ex;
                 status = "ERROR";
             }
-        }
 
+        }
     }
 }
