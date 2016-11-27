@@ -18,7 +18,7 @@ public class show extends AppCompatActivity {
     Button btn_remove;
     ArrayList<String[]> tbl_travel_2;
     travels Travels;
-    boolean delete;
+    deleteTravels delete;
 
 
 
@@ -26,29 +26,26 @@ public class show extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
-        //progressDialog = new ProgressDialog(show.this,R.style.AppTheme_Dark_Dialog);
-        delete = false;
         btn_remove = (Button) findViewById(R.id.btn_remove);
         btn_remove.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //progressDialog.setMessage("Deleting Travels...");
-                delete = true;
+                delete = new deleteTravels();
+                delete.execute("");
                 Travels = new travels();
                 Travels.execute("");
-
-                //deleteSelectedRows();
-                //progressDialog.dismiss();
             }
         });
-        Travels = new travels();
-        Travels.execute("");
-        //fillTable();
+        tbl_travel_2 = (ArrayList<String[]>) getIntent().getSerializableExtra("tbl_travel_option");
+        fillTable(tbl_travel_2);
+ //       Travels = new travels();
+ //       Travels.execute("");
     }
 
-    public void fillTable(){
+    public void fillTable(ArrayList<String[]> tbl_travel_2){
 
         //Declaration of a List
         //tbl_travel_2 = new ArrayList<String[]>();
+
         //Get Table from Screen
         TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
         tbl_travels.removeAllViews();
@@ -111,12 +108,7 @@ public class show extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String r) {
-            /*
-            if (delete){
-                deleteSelectedRows();
-                delete = false;
-            }*/
-            fillTable();
+            fillTable(tbl_travel_2);
             progressDialog.dismiss();
             //Show Toast Message
             Toast.makeText(show.this, r, Toast.LENGTH_SHORT).show();
@@ -124,18 +116,37 @@ public class show extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            if (delete){
-                deleteSelectedRows();
-            }
 
             DataBaseStatements db = new DataBaseStatements();
             tbl_travel_2 = new ArrayList<String[]>();
             tbl_travel_2 = db.getTravels();
             message =  db.message;
-
             return message;
 
         }
     }
 
+    public class deleteTravels extends AsyncTask<String,String,String>{
+        ProgressDialog progressDialog;
+        String message = "";
+        TableLayout tbl_travels = (TableLayout) findViewById(R.id.travelTable);
+
+        @Override
+        protected void onPreExecute (){
+            //Show Popup of Deletetion
+            progressDialog = new ProgressDialog(show.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setMessage("Borrando Viajes...");
+            progressDialog.show();
+        }
+        @Override
+        protected void onPostExecute(String r) {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            deleteSelectedRows();
+            return "";
+        }
+    }
 }
