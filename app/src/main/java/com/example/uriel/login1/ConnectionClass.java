@@ -8,12 +8,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionClass {
-    String ip = "db4free.net";
+    String ip = "sql3.freesqldatabase.com";
     String port = "3306";
     String classs = "com.mysql.jdbc.Driver";
-    String db = "android808";
-    String un = "admin808";
-    String password = "123456";
+    String db = "sql3146700";
+    String un = "sql3146700";
+    String password = "9jaEwnTPEP";
     String error ="";
 
     @SuppressLint("NewApi")
