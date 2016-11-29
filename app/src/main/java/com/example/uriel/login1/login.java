@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 public class login extends AppCompatActivity {
 
     //Declaration of UI Elements
+    //Test
     EditText et_user, et_password;
     Button   btn_login,btn_register;
     Intent activity_register;
