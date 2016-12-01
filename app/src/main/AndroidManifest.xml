@@ -14,32 +14,39 @@
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".travel"
-            android:label = "Ingresar Nuevo Viaje"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:label="Ingresar Nuevo Viaje"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".options"
-            android:label = "Opciones"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:label="Opciones"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".show"
-            android:label = "Lista de Viajes"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:label="Lista de Viajes"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".register"
             android:label="Register"
-            android:screenOrientation="sensor"
-            />
+            android:screenOrientation="sensor" />
+
+        <service
+            android:name=".BackgroudService"
+            android:process=":remote" />
+
+        <receiver
+            android:name=".onStartUp"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+            </intent-filter>
+        </receiver>
     </application>
+
 </manifest>

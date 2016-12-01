@@ -9,7 +9,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.uriel.login1"
-        minSdkVersion 16
+        //minSdkVersion 23
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -40,3 +41,5 @@ dependencies {
     compile files('libs/mysql-connector-java-5.1.40-bin.jar')
 
 }
+
+
