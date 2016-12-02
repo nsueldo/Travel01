@@ -50,9 +50,6 @@ public class BackgroudService extends Service{
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
-
-
             }
         }).start();
 

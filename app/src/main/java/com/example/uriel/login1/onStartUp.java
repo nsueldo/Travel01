@@ -19,10 +19,17 @@ public class onStartUp extends BroadcastReceiver {
         Toast.makeText(context, "Ha conectado el cargador.", Toast.LENGTH_SHORT).show();
         //Intent servicio = new Intent(context,BackgroudService.class);
         //context.startService(servicio);
-        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(context, BackgroudService.class);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 20000, pi); // Millisec * Second * Minute
+        Intent inten = new Intent(context, TravelsReceiver.class);
+        // Create a PendingIntent to be triggered when the alarm goes off
+        final PendingIntent pIntent = PendingIntent.getBroadcast(context, TravelsReceiver.REQUEST_CODE,
+                inten, PendingIntent.FLAG_UPDATE_CURRENT);
+        // Setup periodic alarm every 5 seconds
+        long firstMillis = System.currentTimeMillis(); // alarm is set right away
+        AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
+        // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
+                50000L, pIntent);
     }
 }
 
