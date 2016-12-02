@@ -130,9 +130,9 @@ public class DataBaseStatements {
                 linea[4] = data.getString("travel_time");
                 tbl_travels.add(linea);
             }
-            con.close();
             message = "Viajes Cargados";
             status = "OK";
+            con.close();
         } catch (Exception ex){
             message = "Exception";
             status = "ERROR";
@@ -186,8 +186,8 @@ public class DataBaseStatements {
                     row[1] = rs.getString("company_name");
                     tbl_companies.add(row);
                 }
-                con.close();
             }
+            con.close();
         }catch (Exception ex){
             message = "Error  connection with SQL Server: "+ex;
             status = "ERROR";
@@ -226,17 +226,18 @@ public class DataBaseStatements {
                     stmt.executeUpdate(query);
                     message = "Usuario Registrado";
                     status = "OK";
-                    con.close();
+
                 }else {
                     message = "Usuario Registrado";
                     status = "ERROR";
                 }
 
-
+                con.close();
             }catch (Exception ex){
                 message = "Error  connection with SQL Server: "+ex;
                 status = "ERROR";
             }
+
 
         }
     }

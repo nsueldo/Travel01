@@ -48,14 +48,5 @@
                 android:layout_marginTop="5dp"
                 android:padding="10dp" />
 
-            <Button
-                android:id="@+id/btn_test"
-                android:text="Notificacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttons"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                android:onClick="muestraNot"/>
         </LinearLayout>
     </RelativeLayout>

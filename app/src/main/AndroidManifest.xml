@@ -11,7 +11,8 @@
         android:allowBackup="true"
         android:icon="@android:drawable/ic_popup_sync"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:label="Travels">
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,9 +37,6 @@
             android:label="Register"
             android:screenOrientation="sensor" />
 
-        <service
-            android:name=".BackgroudService"
-            android:process=":remote" />
 
         <receiver
             android:name=".onStartUp"

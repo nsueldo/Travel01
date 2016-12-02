@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-/**
- * Created by Sueldo on 1/12/2016.
- */
 
 public class checkTravels extends IntentService {
 
