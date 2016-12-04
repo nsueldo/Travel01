@@ -19,7 +19,7 @@ public class DataBaseStatements {
         //Check if the user and password are initial
         if (name.equals("") || password.equals(""))
         {
-            message = "Ingresar Usuario y Contraseña";
+            message = "Ingrese usuario y contraseña";
             status  = "ERROR";
             return;
         }
@@ -92,8 +92,8 @@ public class DataBaseStatements {
             }else {
                 String query;
                 query = "INSERT INTO travels (travel_source, travel_target, travel_date," +
-                        " travel_time) " + "VALUES('"+source+"','"+target+"'," +
-                        "'"+mydate+"', '"+mytime+"');";
+                        " travel_time,available) " + "VALUES('"+source+"','"+target+"'," +
+                        "'"+mydate+"', '"+mytime+"',TRUE);";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(query);
                 message = "Nuevo Viaje Creado";
@@ -240,5 +240,45 @@ public class DataBaseStatements {
 
 
         }
+    }
+
+    public ArrayList travelsAvaliable() {
+        ArrayList<String[]> tbl_travels = new ArrayList<String[]>();
+        try {
+            connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+            if (con == null){
+                message = "Error in connection with SQL Server";
+                status = "ERROR";
+                return null;
+            }
+
+            String query;
+            query = "SELECT * FROM travels WHERE available = TRUE";
+            Statement stmt = con.createStatement();
+            ResultSet data =stmt.executeQuery(query);
+            while (data.next()){
+                String[] linea = {null,null,null,null,null};
+                linea[0] = data.getString("travel_id");
+                linea[1] = data.getString("travel_source");
+                linea[2] = data.getString("travel_target");
+                linea[3] = data.getString("travel_date");
+                linea[4] = data.getString("travel_time");
+                tbl_travels.add(linea);
+            }
+            if (tbl_travels.size() > 0){
+                message = "Viajes Detectados";
+                status = "OK";
+            }else{
+                message = "No se detectaron viajes";
+                status = "NOK";
+            }
+            con.close();
+        } catch (Exception ex){
+            message = "Exception";
+            status = "ERROR";
+        }
+
+        return tbl_travels;
     }
 }

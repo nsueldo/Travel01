@@ -25,5 +25,17 @@
         android:background="@drawable/round_button"
         android:drawableTop="@android:drawable/ic_menu_add"/>
 
+    <Button
+        android:text="Ajustes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/btn_settings"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="103dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@android:drawable/ic_menu_add"
+        android:layout_below="@+id/btn_show"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

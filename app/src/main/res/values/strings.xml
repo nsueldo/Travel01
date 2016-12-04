@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Travels</string>
     <string name="company_choose">Seleccione Empresa</string>
+    <string name="user_pass_insert">Ingresar Usuario y Contraseña</string>
 </resources>

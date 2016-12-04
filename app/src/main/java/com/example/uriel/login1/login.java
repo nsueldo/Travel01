@@ -1,8 +1,6 @@
 package com.example.uriel.login1;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -31,6 +29,14 @@ public class login extends AppCompatActivity {
             finish();
         }
 
+        String[] data;
+        data = sharedPreferences.getLogin(getApplicationContext());
+        if (data[0] != null){
+            Intent activity_options = new Intent(getApplicationContext(), options.class);
+            //Navigate to Options Activity
+            startActivity(activity_options);
+        }
+
         //Get UI Elements from Login Activity
         et_user = (EditText)findViewById(R.id.et_user);
         et_password = (EditText)findViewById(R.id.et_password);
@@ -56,8 +62,6 @@ public class login extends AppCompatActivity {
         });
     }
 
-
-
     public class DoLogin extends AsyncTask<String,String,String>{
         //Declaration
         ProgressDialog progressDialog;
@@ -70,6 +74,7 @@ public class login extends AppCompatActivity {
             //Start Progress Bar
             progressDialog = new ProgressDialog(login.this, R.style.AppTheme_Dark_Dialog);
             progressDialog.setMessage("Validando ingreso...");
+            progressDialog.setCancelable(false);
             progressDialog.show();
         }
 
@@ -86,6 +91,8 @@ public class login extends AppCompatActivity {
             db.checkUser(userid, password);
                 if (db.status == "OK")
                 {
+                    //Save Login Data in the App
+                    sharedPreferences.saveLogin(getApplicationContext(), userid, password);
                     //Navigate to Options Activity
                     startActivity(activity_options);
                 }

@@ -37,6 +37,11 @@
             android:label="Register"
             android:screenOrientation="sensor" />
 
+        <activity
+            android:name=".settings"
+            android:label="Ajustes"
+            android:screenOrientation="sensor" />
+
 
         <receiver
             android:name=".onStartUp"

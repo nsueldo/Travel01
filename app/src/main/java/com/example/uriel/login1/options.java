@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 
 public class options extends AppCompatActivity {
-    Button btn_show, btn_insert, btn_register;
-    Intent activity_travel, activity_show, activity_register;
+    Button btn_show, btn_insert, btn_settings;
+    Intent activity_travel, activity_show, activity_settings;
     Intent transfer;
 
     @Override
@@ -24,6 +24,7 @@ public class options extends AppCompatActivity {
 
         activity_travel = new Intent(getApplicationContext(),travel.class);
         activity_show = new Intent(getApplicationContext(),show.class);
+        activity_settings = new Intent(getApplicationContext(),settings.class);
 
         //Transfer travels to activity show
         transfer = new Intent(this, show.class);
@@ -31,6 +32,7 @@ public class options extends AppCompatActivity {
 
         btn_insert = (Button) findViewById(R.id.btn_insert);
         btn_show = (Button) findViewById(R.id.btn_show);
+        btn_settings = (Button) findViewById(R.id.btn_settings);
 
 
         btn_insert.setOnClickListener( new View.OnClickListener(){
@@ -43,10 +45,14 @@ public class options extends AppCompatActivity {
             public void  onClick (View v){
                 myTravels showTravels = new myTravels();
                 showTravels.execute();
-                
             }
         });
 
+        btn_settings.setOnClickListener( new View.OnClickListener(){
+            public void  onClick (View v){
+                startActivity(activity_settings);
+            }
+        });
     }
 
 
