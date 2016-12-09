@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.MySQL;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+
 
 public class DataBaseStatements {
     //Declaration of Public Variables
@@ -19,7 +20,7 @@ public class DataBaseStatements {
         //Check if the user and password are initial
         if (name.equals("") || password.equals(""))
         {
-            message = "Ingrese usuario y contraseña";
+            message = "Complete todos los campos";
             status  = "ERROR";
             return;
         }
@@ -41,7 +42,6 @@ public class DataBaseStatements {
                 ResultSet rs = stmt.executeQuery(query);
                 if(rs.next())
                 {
-                    locked = null;
                     locked = rs.getString("locked");
                     if (locked == null){
                         message = "Logueo Exitoso";
@@ -280,5 +280,30 @@ public class DataBaseStatements {
         }
 
         return tbl_travels;
+    }
+
+    public void lockTravel(String id_travel){
+        try {
+            connectionClass = new ConnectionClass();
+            Connection con = connectionClass.CONN();
+            if (con == null){
+                message = "Error in connection with SQL Server";
+                status = "ERROR";
+
+            }
+
+            String query;
+            query = "UPDATE travels SET available = FALSE WHERE travel_id = '"+id_travel+"';";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+
+            message = "Viaje Bloqueado";
+            status = "OK";
+
+            con.close();
+        } catch (Exception ex){
+            message = "Exception";
+            status = "ERROR";
+        }
     }
 }

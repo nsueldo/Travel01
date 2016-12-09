@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import java.util.List;
 import android.util.Log;
 import android.app.ProgressDialog;
 import android.widget.Toast;
+
+import com.example.uriel.login1.MySQL.DataBaseStatements;
+import com.example.uriel.login1.R;
 
 public class register extends AppCompatActivity {
     List<String> companies_list;

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:label="Travels">
-        <activity android:name=".login">
+        <activity android:name=".Activities.login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,30 +21,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".travel"
+            android:name=".Activities.travel"
             android:label="Ingresar Nuevo Viaje"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".options"
+            android:name=".Activities.options"
             android:label="Opciones"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".show"
+            android:name=".Activities.show"
             android:label="Lista de Viajes"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".register"
+            android:name=".Activities.register"
             android:label="Register"
             android:screenOrientation="sensor" />
 
         <activity
-            android:name=".settings"
+            android:name=".Activities.settings"
             android:label="Ajustes"
             android:screenOrientation="sensor" />
 
+        <activity
+            android:name=".Activities.select"
+            android:label="Seleccion de Viaje"
+            android:screenOrientation="locked"/>
 
         <receiver
-            android:name=".onStartUp"
+            android:name=".BroadcastReceiver.onStartUp"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -52,12 +56,12 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".TravelsReceiver"
+            android:name=".BroadcastReceiver.TravelsReceiver"
             android:process=":remote" >
         </receiver>
 
         <service
-            android:name=".checkTravels"
+            android:name=".Utilities.checkTravels"
             android:exported="false" />
     </application>
 

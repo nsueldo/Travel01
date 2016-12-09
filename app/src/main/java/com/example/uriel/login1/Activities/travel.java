@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.uriel.login1.MySQL.DataBaseStatements;
+import com.example.uriel.login1.R;
 
 public class travel extends AppCompatActivity {
     //Declare UI Elements of Travel Screen

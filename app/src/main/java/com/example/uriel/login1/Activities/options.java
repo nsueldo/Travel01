@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.uriel.login1.MySQL.DataBaseStatements;
+import com.example.uriel.login1.R;
 
 import java.util.ArrayList;
 
@@ -75,7 +78,6 @@ public class options extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(String r) {
-            //Show.fillTable();
 
             if (db.status == "OK")
             {

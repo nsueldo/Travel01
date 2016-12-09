@@ -1,6 +1,5 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.app.ProgressDialog;
+
+import com.example.uriel.login1.MySQL.DataBaseStatements;
+import com.example.uriel.login1.R;
+import com.example.uriel.login1.Utilities.sharedPreferences;
 
 
 public class login extends AppCompatActivity {
@@ -35,6 +38,9 @@ public class login extends AppCompatActivity {
             Intent activity_options = new Intent(getApplicationContext(), options.class);
             //Navigate to Options Activity
             startActivity(activity_options);
+            //Close this activity
+            finish();
+
         }
 
         //Get UI Elements from Login Activity

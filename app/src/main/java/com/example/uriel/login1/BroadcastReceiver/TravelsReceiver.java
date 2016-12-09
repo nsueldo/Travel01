@@ -1,8 +1,10 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.BroadcastReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.uriel.login1.Utilities.checkTravels;
 
 /**
  * Created by Sueldo on 1/12/2016.

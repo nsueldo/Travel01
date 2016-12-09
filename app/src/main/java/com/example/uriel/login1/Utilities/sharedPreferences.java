@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.MySQL;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
@@ -8,12 +8,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionClass {
-    String ip = "sql3.freesqldatabase.com";
+    String ip = "db4free.net";
     String port = "3306";
     String classs = "com.mysql.jdbc.Driver";
-    String db = "sql3146700";
-    String un = "sql3146700";
-    String password = "9jaEwnTPEP";
+    String db = "android808";
+    String un = "admin808";
+    String password = "123456";
     String error ="";
 
     @SuppressLint("NewApi")

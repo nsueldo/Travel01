@@ -7,7 +7,7 @@
         android:text="Mostrar Viajes"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:paddingTop="10dp"
         android:id="@+id/btn_show"
@@ -15,27 +15,23 @@
         android:drawableTop="@android:drawable/ic_menu_search"/>
 
     <Button
+        android:id="@+id/btn_insert"
         android:text="Nuevo   Viaje"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/btn_insert"
-        android:layout_marginLeft="200dp"
+        android:drawableTop="@android:drawable/ic_menu_add"
         android:layout_marginTop="20dp"
-        android:paddingTop="10dp"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/round_button"
-        android:drawableTop="@android:drawable/ic_menu_add"/>
+        android:layout_marginEnd="50dp" />
 
     <Button
-        android:text="Ajustes"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
         android:id="@+id/btn_settings"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="103dp"
-        android:paddingTop="10dp"
-        android:background="@drawable/round_button"
-        android:drawableTop="@android:drawable/ic_menu_add"
-        android:layout_below="@+id/btn_show"
-        android:layout_centerHorizontal="true" />
-
+        android:text="Ajustes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:padding="10dp" />
 </RelativeLayout>

@@ -1,9 +1,11 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Utilities;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.uriel.login1.BroadcastReceiver.TravelsReceiver;
 
 /**
  * Created by Uriel on 12/3/2016.

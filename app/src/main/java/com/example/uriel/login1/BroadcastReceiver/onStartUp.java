@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.BroadcastReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,7 +17,6 @@ public class onStartUp extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //Show Toast when the charger connects
         Toast.makeText(context, "Ha conectado el cargador.", Toast.LENGTH_SHORT).show();
-        //Set Alarm "Notifications"
     }
 }
 

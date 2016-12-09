@@ -1,4 +1,4 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.example.uriel.login1.MySQL.DataBaseStatements;
+import com.example.uriel.login1.R;
 
 
 public class show extends AppCompatActivity {

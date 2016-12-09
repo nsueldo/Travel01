@@ -1,10 +1,14 @@
-package com.example.uriel.login1;
+package com.example.uriel.login1.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.example.uriel.login1.R;
+import com.example.uriel.login1.Utilities.alarmClass;
+import com.example.uriel.login1.Utilities.sharedPreferences;
 
 public class settings extends AppCompatActivity {
     //UI Declarations
@@ -22,15 +26,15 @@ public class settings extends AppCompatActivity {
         notification = (Switch) findViewById(R.id.notification);
         notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 if(isChecked){
                     //Enable Travel Notifications
                     alarmClass.setNotifications(getApplicationContext());
-                    status.setText("Notificacines de Viajes: Prendidas");
+                    status.setText("Notificaciones de Viajes: Prendidas");
                 } else{
                     //Disable Travel Notifications
                     alarmClass.disableNotifications(getApplicationContext());
-                    status.setText("Notificacines de Viajes: Apagadas");
+                    status.setText("Notificaciones de Viajes: Apagadas");
                 }
                 //Save Travel Notifications Settings in Shared Preferences
                 sharedPreferences.saveSettings(getApplicationContext(), isChecked);
