@@ -58,7 +58,7 @@ public class travel extends AppCompatActivity {
         @Override
         protected void onPreExecute (){
             progressDialog = new ProgressDialog(travel.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setMessage("Loading Travel...");
+            progressDialog.setMessage("Cargando Viaje...");
             progressDialog.show();
         }
         @Override

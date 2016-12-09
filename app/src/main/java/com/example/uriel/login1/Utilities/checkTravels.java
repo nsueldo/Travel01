@@ -13,6 +13,7 @@ import com.example.uriel.login1.MySQL.DataBaseStatements;
 import java.util.ArrayList;
 
 
+
 public class checkTravels extends IntentService {
 
     public checkTravels() {
@@ -29,7 +30,8 @@ public class checkTravels extends IntentService {
         Intent transfer = new Intent(this,select.class);
         transfer.putExtra("notifyID", 12345);
         transfer.putExtra("tbl_travels",tbl_travels);
-        PendingIntent activity_select = PendingIntent.getActivity(this, 0, transfer, 0);
+        PendingIntent activity_select = PendingIntent.getActivity(this, 0, transfer,
+                                        PendingIntent.FLAG_UPDATE_CURRENT);
 
         if (db.status == "OK"){
             NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -43,7 +45,7 @@ public class checkTravels extends IntentService {
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .build();
             nManager.notify(12345, noti);
-            tbl_travels = new ArrayList<String[]>();
+            tbl_travels.removeAll(tbl_travels);
         }
     }
 }

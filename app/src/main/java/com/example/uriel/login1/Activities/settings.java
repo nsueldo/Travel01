@@ -1,10 +1,12 @@
 package com.example.uriel.login1.Activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uriel.login1.R;
 import com.example.uriel.login1.Utilities.alarmClass;
@@ -13,7 +15,6 @@ import com.example.uriel.login1.Utilities.sharedPreferences;
 public class settings extends AppCompatActivity {
     //UI Declarations
     Switch notification;
-    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,6 @@ public class settings extends AppCompatActivity {
         //Set Screen Settings
         setSettings();
         //Activate Action "On Checked Changed" for Button Switch
-        status = (TextView) findViewById(R.id.status);
         notification = (Switch) findViewById(R.id.notification);
         notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -30,11 +30,11 @@ public class settings extends AppCompatActivity {
                 if(isChecked){
                     //Enable Travel Notifications
                     alarmClass.setNotifications(getApplicationContext());
-                    status.setText("Notificaciones de Viajes: Prendidas");
+                    Toast.makeText(getApplicationContext(),"Notificaciones de Viajes: Prendidas",Toast.LENGTH_SHORT).show();
                 } else{
                     //Disable Travel Notifications
                     alarmClass.disableNotifications(getApplicationContext());
-                    status.setText("Notificaciones de Viajes: Apagadas");
+                    Toast.makeText(getApplicationContext(),"Notificaciones de Viajes: Apagadas",Toast.LENGTH_SHORT).show();
                 }
                 //Save Travel Notifications Settings in Shared Preferences
                 sharedPreferences.saveSettings(getApplicationContext(), isChecked);
