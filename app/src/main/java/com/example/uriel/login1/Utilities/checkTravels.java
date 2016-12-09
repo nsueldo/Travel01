@@ -19,10 +19,12 @@ public class checkTravels extends IntentService {
         super("checkTravels");
     }
 
+    ArrayList<String[]> tbl_travels;
+
     @Override
     protected void onHandleIntent(Intent intent) {
         DataBaseStatements db = new DataBaseStatements();
-        ArrayList<String[]> tbl_travels = db.travelsAvaliable();
+        tbl_travels = db.travelsAvaliable();
 
         Intent transfer = new Intent(this,select.class);
         transfer.putExtra("notifyID", 12345);
@@ -36,11 +38,12 @@ public class checkTravels extends IntentService {
                     .setContentTitle("Viajes")
                     .setContentText(db.message)
                     .setVibrate(new long[] {100, 250, 100, 500})
-                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                    .setSmallIcon(android.R.drawable.ic_popup_sync)
                     .setWhen(System.currentTimeMillis())
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .build();
             nManager.notify(12345, noti);
+            tbl_travels = new ArrayList<String[]>();
         }
     }
 }
