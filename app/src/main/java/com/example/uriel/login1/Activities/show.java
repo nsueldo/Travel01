@@ -62,7 +62,7 @@ public class show extends AppCompatActivity {
             //For each line, there are a CheckBox
             CheckBox chb = new CheckBox(this);
             chb.setGravity(Gravity.CENTER_HORIZONTAL);
-            chb.setBackgroundResource(R.drawable.cell_shape);
+
             row.addView(chb);
             String[] item = tbl_travel_2.get(i-1);
             //Loop each cell of the current line
@@ -72,7 +72,16 @@ public class show extends AppCompatActivity {
                 //Get current Cell and add this to the row
                 tv.setText(item[j]);
                 tv.setGravity(Gravity.CENTER_HORIZONTAL);
-                tv.setBackgroundResource(R.drawable.cell_shape);
+
+                //Change colors of rows for design
+                if (i%2 == 0){
+                    tv.setBackgroundResource(R.drawable.cell_shape_dark);
+                    chb.setBackgroundResource(R.drawable.cell_shape_dark);
+                }else{
+                    tv.setBackgroundResource(R.drawable.cell_shape);
+                    chb.setBackgroundResource(R.drawable.cell_shape);
+                }
+
                 row.addView(tv);
             }
             //Add the row to the Screen Table

@@ -5,48 +5,52 @@
     android:layout_height="match_parent"
     android:background="@color/blue">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:orientation="vertical"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/et_user"
+            android:hint="Nombre de usuario"
+            android:drawableLeft="@mipmap/ic_account_circle"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dip">
-
-            <EditText
-                android:id="@+id/et_user"
-                android:hint="Usuario"
-                android:inputType="text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dip"
-                style="@style/EditText"/>
+            android:layout_marginTop="0dip"
+            style="@style/EditText"/>
 
 
-            <EditText
-                android:id="@+id/et_password"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/EditText"/>
+        <EditText
+            android:id="@+id/et_password"
+            android:hint="Contraseña"
+            android:drawableLeft="@mipmap/ic_lock_black"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditText"/>
 
-            <Button
-                android:id="@+id/btn_login"
-                android:text="Ingresar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttons"
-                android:layout_marginTop="10dp"
-                android:padding="10dp" />
+        <Button
+            android:id="@+id/btn_login"
+            android:text="Iniciar Sesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_marginTop="10dp"
+            android:padding="10dp" />
 
-            <Button
-                android:id="@+id/btn_register"
-                android:text="Registrar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttons"
-                android:layout_marginTop="5dp"
-                android:padding="10dp" />
+        <Button
+            android:id="@+id/btn_register"
+            android:text="Registrarte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
 
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

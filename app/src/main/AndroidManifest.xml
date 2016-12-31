@@ -12,8 +12,10 @@
         android:icon="@android:drawable/ic_popup_sync"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:label="Travels">
-        <activity android:name=".Activities.login">
+        android:label="Viajes">
+        <activity
+            android:name=".Activities.login"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +24,7 @@
         </activity>
         <activity
             android:name=".Activities.travel"
-            android:label="Ingresar Nuevo Viaje"
+            android:label="Ingresar nuevo viaje"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.options"
@@ -30,22 +32,22 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.show"
-            android:label="Lista de Viajes"
+            android:label="Lista de viajes"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.register"
-            android:label="Register"
-            android:screenOrientation="sensor" />
+            android:label="Registro"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".Activities.settings"
             android:label="Ajustes"
-            android:screenOrientation="sensor" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Activities.select"
             android:label="Seleccion de Viaje"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".BroadcastReceiver.onStartUp"

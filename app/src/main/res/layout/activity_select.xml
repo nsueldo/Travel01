@@ -3,136 +3,151 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue">
+    android:gravity="center_horizontal"
+    android:background="@color/blue"
+    android:id="@+id/lyt_select">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="454dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#ffeead">
+
+
+        <TextView
+            android:text="Hay N/A viajes disponibles"
+            android:id="@+id/tw_qtravels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#f27d0c"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@drawable/table"
+        android:id="@+id/tbl_data">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
+
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
                 android:text="Origen: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                style="@style/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tw_source"
-                android:layout_marginTop="20dp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
                 android:text="Aqui va el origen"
-                android:textSize="20dp"/>
+                style="@style/TextView" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
+
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
                 android:text="Destino: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                style="@style/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tw_target"
-                android:layout_marginTop="20dp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
                 android:text="Aqui va el destino"
-                android:textSize="20dp"/>
+                style="@style/TextView"
+                />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Fecha: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:text="Fecha:"
+                android:textStyle="bold"
+                style="@style/TextView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
             <TextView
                 android:id="@+id/tw_date"
-                android:layout_marginTop="20dp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
                 android:text="Aqui va la fecha"
-                android:textSize="20dp"/>
+                style="@style/TextView"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
+
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
                 android:text="Hora: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                style="@style/TextView"/>
 
             <TextView
                 android:id="@+id/tw_time"
-                android:layout_marginTop="20dp"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
                 android:text="Aqui va la hora"
-                android:textSize="20dp"/>
+                style="@style/TextView"/>
         </LinearLayout>
-
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:src="@drawable/ic_home"
             android:onClick="gotoMenu"
-            android:text="Menu"/>
+            style="@style/ImageButton"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:onClick="lockTravel"
-            android:text="Aceptar" />
+            android:src="@drawable/ic_add"
+            style="@style/ImageButton"/>
 
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_nok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:onClick="changeTravel"
-            android:text="Rechazar"/>
+            android:src="@drawable/ic_remove"
+            style="@style/ImageButton"/>
 
-        <Button
+        <ImageButton
+            android:layout_gravity="bottom"
             android:id="@+id/btn_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:onClick="gotoExit"
-            android:text="Salir"/>
+            android:src="@drawable/ic_exit"
+            style="@style/ImageButton"/>
 
     </LinearLayout>
 

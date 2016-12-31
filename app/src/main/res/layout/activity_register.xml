@@ -14,7 +14,8 @@
         android:padding="15dip">
         <EditText
             android:id="@+id/et_rname"
-            android:hint="Nombre"
+            android:hint="Ingrese su nombre"
+            android:drawableLeft="@mipmap/ic_face_black"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +23,8 @@
 
         <EditText
             android:id="@+id/et_rsurname"
-            android:hint="Apellido"
+            android:hint="Ingrese su apellido"
+            android:drawableLeft="@mipmap/ic_face_black"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +32,8 @@
 
         <EditText
             android:id="@+id/et_remail"
-            android:hint="Correo"
+            android:hint="Correo electronico"
+            android:drawableLeft="@mipmap/ic_email_black"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +41,8 @@
 
         <EditText
             android:id="@+id/et_ruser"
-            android:hint="Usuario"
+            android:hint="Elige nombre de usuario"
+            android:drawableLeft="@mipmap/ic_account_circle"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +50,8 @@
 
         <EditText
             android:id="@+id/et_rpassword"
-            android:hint="Contraseña"
+            android:hint="Elige contraseña"
+            android:drawableLeft="@mipmap/ic_lock_black"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/EditText"
-            android:padding="28dp" />
+            android:padding="10dp" />
 
         <Button
             android:id="@+id/btn_rgo"
